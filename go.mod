@@ -1,4 +1,4 @@
-module main
+module tracker
 
 go 1.26.1
 
