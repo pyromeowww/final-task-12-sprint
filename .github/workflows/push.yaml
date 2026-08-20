@@ -4,7 +4,7 @@ name: golang-pipeline # Название
 on: 
   push:
     branches: [ "main" ]
-  tags: [ "*" ]
+    tags: [ "*" ]
 
 # Задачи
 jobs:
