@@ -28,7 +28,7 @@ jobs:
     needs: test
     # Запуск только при добавление тега
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
-
+    # Шаги
     steps:
       - name: Checkout
         uses: actions/checkout@v7
