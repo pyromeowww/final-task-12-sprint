@@ -28,6 +28,7 @@ jobs:
     needs: test
     # Запуск только при добавление тега
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -38,16 +39,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
 
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v6
-        with:
-          images: pyromeow/tracker-finaly-12sprint
-
-      - name: Build and push Docker Image
+      - name: Build and push Docker
         uses: docker/build-push-action@v7
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            pyromeow/tracker-finaly-12sprint:${{ github.ref_name }}
+            pyromeow/tracker-finaly-12sprint:latest
